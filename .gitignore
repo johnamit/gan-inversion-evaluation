@@ -2,3 +2,7 @@
 *.pt
 *.pkl
 **/ffhq/
+*.npz
+*.log
+*.ckpt
+*.pth
