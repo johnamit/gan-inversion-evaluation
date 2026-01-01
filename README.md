@@ -1,4 +1,5 @@
-# Evaluating GAN Inversion Approached for StyleGAN2-ADA
+<img src="asset/ganinvert.png" alt="GAN Inversion Evaluation" width="900"><br>
+
 ## Project Descripton
 An evaluation of the GAN inversion performance of two optimisation based inversion approaches and one encoder based inversion approach. For the optimisation based approaches i evaluated StyleGAN2-ada's built in projector and [Image2StyleGAN](https://arxiv.org/abs/1904.03189). For the encoder based approach i evaluated [Encoder4Editing](https://arxiv.org/abs/2102.02766)
 
