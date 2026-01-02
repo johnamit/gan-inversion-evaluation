@@ -156,7 +156,7 @@ python scripts/evaluation/evaluate_inversion_args.py \
 
 
 
-## Metrics
+## Results
 
 The evaluation script computes:
 
@@ -167,7 +167,7 @@ The evaluation script computes:
 | **LPIPS** | [0, 1] | Lower | Learned Perceptual Image Patch Similarity |
 | **ID Similarity** | [-1, 1] | Higher | FaceNet cosine similarity (identity preservation) |
 
-
+![Demo](assets/demo.gif)
 
 ## Dataset
 
