@@ -2,6 +2,20 @@
 
 A benchmarking framework for evaluating GAN inversion methods that project real images into StyleGAN2's latent space. This project compares **two optimization-based approaches** ([Native Projector](https://github.com/NVlabs/stylegan2-ada-pytorch), [Image2StyleGAN](https://arxiv.org/abs/1904.03189)) and **one encoder-based approach** ([Encoder4Editing](https://arxiv.org/abs/2102.02766)), measuring reconstruction quality using MSE, SSIM, LPIPS, and facial identity similarity.
 
+<p>
+  <a href="#overview"><img src="https://img.shields.io/badge/Overview-111111?style=for-the-badge" alt="Overview"></a>
+  <a href="#prerequisites"><img src="https://img.shields.io/badge/Prerequisites-111111?style=for-the-badge" alt="Prerequisites"></a>
+  <a href="#project-structure"><img src="https://img.shields.io/badge/Structure-111111?style=for-the-badge" alt="Project Structure"></a>
+  <a href="#dataset"><img src="https://img.shields.io/badge/Dataset-111111?style=for-the-badge" alt="Dataset"></a>
+  <a href="#implementation-notes"><img src="https://img.shields.io/badge/Notes-111111?style=for-the-badge" alt="Implementation Notes"></a>
+  <a href="#installation"><img src="https://img.shields.io/badge/Install-111111?style=for-the-badge" alt="Installation"></a>
+  <a href="#usage"><img src="https://img.shields.io/badge/Usage-111111?style=for-the-badge" alt="Usage"></a>
+  <a href="#results"><img src="https://img.shields.io/badge/Results-111111?style=for-the-badge" alt="Results"></a>
+  <a href="#acknowledgements"><img src="https://img.shields.io/badge/Credits-111111?style=for-the-badge" alt="Acknowledgements"></a>
+  <a href="#license"><img src="https://img.shields.io/badge/License-111111?style=for-the-badge" alt="License"></a>
+</p>
+
+
 ## Overview
 
 GAN inversion is the task of finding a latent code that, when passed through a trained generator, reconstructs a given target image. This project implements and evaluates three approaches:
@@ -62,6 +76,39 @@ GAN_Inversion/
 │   └── nativeprojector_results/    # Native projector outputs
 └── README.md
 ```
+
+## Dataset
+
+This project uses the [FFHQ Dataset](https://github.com/NVlabs/ffhq-dataset) (Flickr-Faces-HQ):
+
+- **70,000** high-quality PNG images
+- **1024×1024** resolution (can be resized)
+- Diverse coverage of age, gender, ethnicity, and accessories
+
+Alternative source: [Kaggle FFHQ](https://www.kaggle.com/datasets/arnaud58/flickrfaceshq-dataset-ffhq)
+
+
+
+## Implementation Notes
+
+### Image2StyleGAN
+
+My custom PyTorch implementation of [Image2StyleGAN](https://arxiv.org/abs/1904.03189) includes:
+
+- **W+ optimization** in extended latent space
+- **Perceptual loss** using VGG16 features (conv1_1, conv1_2, conv3_2, conv4_2)
+- **Noise regularization** to prevent texture artifacts
+- **Learning rate scheduling** with cosine rampdown
+
+For a TensorFlow implementation, see [abhijitpal1247/Image2StyleGAN](https://github.com/abhijitpal1247/Image2StyleGAN).
+
+### Encoder4Editing
+
+Cloned from the [official repository](https://github.com/omertov/encoder4editing) by the paper authors.
+
+### StyleGAN2-ADA
+
+Cloned from [NVlabs/stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch). Uses NVIDIA's pre-trained FFHQ weights.
 
 
 
@@ -158,6 +205,8 @@ python scripts/evaluation/evaluate_inversion_args.py \
 
 ## Results
 
+![Demo](asset/demo.gif)
+
 The evaluation script computes:
 
 | Metric | Range | Better | Description |
@@ -168,39 +217,6 @@ The evaluation script computes:
 | **ID Similarity** | [-1, 1] | Higher | FaceNet cosine similarity (identity preservation) |
 
 ![Demo](assets/demo.gif)
-
-## Dataset
-
-This project uses the [FFHQ Dataset](https://github.com/NVlabs/ffhq-dataset) (Flickr-Faces-HQ):
-
-- **70,000** high-quality PNG images
-- **1024×1024** resolution (can be resized)
-- Diverse coverage of age, gender, ethnicity, and accessories
-
-Alternative source: [Kaggle FFHQ](https://www.kaggle.com/datasets/arnaud58/flickrfaceshq-dataset-ffhq)
-
-
-
-## Implementation Notes
-
-### Image2StyleGAN
-
-My custom PyTorch implementation of [Image2StyleGAN](https://arxiv.org/abs/1904.03189) includes:
-
-- **W+ optimization** in extended latent space
-- **Perceptual loss** using VGG16 features (conv1_1, conv1_2, conv3_2, conv4_2)
-- **Noise regularization** to prevent texture artifacts
-- **Learning rate scheduling** with cosine rampdown
-
-For a TensorFlow implementation, see [abhijitpal1247/Image2StyleGAN](https://github.com/abhijitpal1247/Image2StyleGAN).
-
-### Encoder4Editing
-
-Cloned from the [official repository](https://github.com/omertov/encoder4editing) by the paper authors.
-
-### StyleGAN2-ADA
-
-Cloned from [NVlabs/stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch). Uses NVIDIA's pre-trained FFHQ weights.
 
 
 
