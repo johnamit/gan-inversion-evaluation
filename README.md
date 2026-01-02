@@ -12,7 +12,6 @@ A benchmarking framework for evaluating GAN inversion methods that project real 
   <a href="#usage"><img src="https://img.shields.io/badge/Usage-111111?style=for-the-badge" alt="Usage"></a>
   <a href="#results"><img src="https://img.shields.io/badge/Results-111111?style=for-the-badge" alt="Results"></a>
   <a href="#acknowledgements"><img src="https://img.shields.io/badge/Credits-111111?style=for-the-badge" alt="Acknowledgements"></a>
-  <a href="#license"><img src="https://img.shields.io/badge/License-111111?style=for-the-badge" alt="License"></a>
 </p>
 
 
